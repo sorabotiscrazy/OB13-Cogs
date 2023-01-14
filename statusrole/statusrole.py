@@ -165,22 +165,20 @@ class StatusRole(commands.Cog):
 
     @staticmethod
     async def _send_log(channel: discord.TextChannel, assign: bool, user: discord.Member, role: discord.Role, status: str, emoji: str, can_embed: bool):
-        embed = discord.Embed(title=f"StatusRole `{role.name}` ")
-        embed.add_field(name="Member", value=user.mention)
-        embed.add_field(name="New Status", value=f"`{status}`")
-        embed.add_field(name="New Emoji", value=f"`{emoji}`")
+        embed = discord.Embed(title=f"")
+        embed.set_description(value=f"{user.mention} has **{status}** our vanity to their status!")
 
         # Role assigned
         if assign:
-            embed.title += "Added"
+            embed.title += "added"
             embed.color = discord.Color.green()
-            plaintext = f"StatusRole: {user.mention} custom status changed to `{status}` with emoji `{emoji}`, {role.mention} assigned"
+            plaintext = f"{user} ty for adding **.gg/pdm** to ur status <3"
 
         # Role removed
         else:
-            embed.title += "Removed"
+            embed.title += "removed"
             embed.color = discord.Color.red()
-            plaintext = f"StatusRole: {user.mention} custom status changed to `{status}` with emoji `{emoji}`, {role.mention} removed"
+            plaintext = f"{user} removed **.gg/pdm** from their status :("
 
         if can_embed:
             await channel.send(embed=embed)
